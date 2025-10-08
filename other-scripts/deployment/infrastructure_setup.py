@@ -34,7 +34,7 @@ class AWSInfrastructureManager:
             response = self.sqs.create_queue(
                 QueueName=queue_name,
                 Attributes={
-                    'VisibilityTimeoutSeconds': '300',  # 5 minutes
+                    'VisibilityTimeout': '300',  # 5 minutes
                     'MessageRetentionPeriod': '1209600',  # 14 days
                     'ReceiveMessageWaitTimeSeconds': '20'  # Long polling
                 }
@@ -122,7 +122,7 @@ class AWSInfrastructureManager:
         try:
             # Check if bot already exists
             try:
-                self.lex.get_bot(name=bot_name)
+                self.lex.get_bot(name=bot_name, versionOrAlias='$LATEST')
                 print(f"Lex bot '{bot_name}' already exists")
                 return bot_name
             except ClientError as e:
@@ -131,8 +131,7 @@ class AWSInfrastructureManager:
             
             # Create GreetingIntent
             greeting_intent = {
-                'intentName': 'GreetingIntent',
-                'intentVersion': '$LATEST',
+                'name': 'GreetingIntent',
                 'sampleUtterances': [
                     'Hello',
                     'Hi',
@@ -150,8 +149,7 @@ class AWSInfrastructureManager:
             
             # Create ThankYouIntent
             thankyou_intent = {
-                'intentName': 'ThankYouIntent',
-                'intentVersion': '$LATEST',
+                'name': 'ThankYouIntent',
                 'sampleUtterances': [
                     'Thank you',
                     'Thanks',
@@ -167,8 +165,7 @@ class AWSInfrastructureManager:
             
             # Create DiningSuggestionsIntent
             dining_intent = {
-                'intentName': 'DiningSuggestionsIntent',
-                'intentVersion': '$LATEST',
+                'name': 'DiningSuggestionsIntent',
                 'sampleUtterances': [
                     'I need restaurant suggestions',
                     'Find me a restaurant',
@@ -352,6 +349,15 @@ def main():
     """
     Main function to set up AWS infrastructure.
     """
+    # Load environment variables from .env file
+    if os.path.exists('.env'):
+        with open('.env', 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key] = value
+    
     manager = AWSInfrastructureManager()
     
     try:
@@ -369,7 +375,7 @@ def main():
         bot_name = manager.create_lex_bot()
         print(f"Lex Bot Name: {bot_name}")
         
-        print("\n✅ AWS infrastructure setup completed!")
+        print("\nAWS infrastructure setup completed!")
         print("\nNext steps:")
         print("1. Verify your email address in SES")
         print("2. Deploy Lambda functions")
@@ -377,7 +383,7 @@ def main():
         print("4. Configure Lambda function permissions")
         
     except Exception as e:
-        print(f"\n❌ Error setting up infrastructure: {e}")
+        print(f"\nError setting up infrastructure: {e}")
         raise
 
 if __name__ == "__main__":

@@ -328,11 +328,20 @@ def main():
     """
     Main function to run the scraper.
     """
+    # Load environment variables from .env file
+    if os.path.exists('.env'):
+        with open('.env', 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key] = value
+    
     # Get API key from environment variable
     yelp_api_key = os.getenv('YELP_API_KEY')
     if not yelp_api_key:
         print("Error: YELP_API_KEY environment variable not set")
-        print("Please set your Yelp API key: export YELP_API_KEY='your_api_key_here'")
+        print("Please set your Yelp API key in the .env file")
         return
     
     # Initialize scraper

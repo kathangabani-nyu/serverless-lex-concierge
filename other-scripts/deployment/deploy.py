@@ -471,15 +471,24 @@ class DiningConciergeDeployer:
 
 def main():
     """Main deployment function."""
+    # Load environment variables from .env file
+    if os.path.exists('.env'):
+        with open('.env', 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key] = value
+    
     deployer = DiningConciergeDeployer()
     
     try:
         result = deployer.deploy_all()
-        print(f"\n🎉 Deployment successful!")
+        print(f"\nDeployment successful!")
         print(f"API URL: {result['api_url']}")
         
     except Exception as e:
-        print(f"\n💥 Deployment failed: {e}")
+        print(f"\nDeployment failed: {e}")
         return 1
     
     return 0
