@@ -1,22 +1,22 @@
-# 🍽️ Serverless Lex Concierge
+# Serverless Lex Concierge
 
 A professional, serverless, microservice-driven web application that provides restaurant recommendations through conversational AI using Amazon Lex.
 
-## 🎯 Project Overview
+## Project Overview
 
 This project implements a **Dining Concierge chatbot** that collects user preferences through natural conversation and provides personalized restaurant suggestions from a curated database of 1000+ Manhattan restaurants. Built for **Cloud Computing and Big Data - Fall 2025** assignment.
 
-### ✨ Key Features
+### Key Features
 
-- **🤖 Conversational AI**: Amazon Lex bot with 3 intents (Greeting, Thank You, Dining Suggestions)
-- **📱 Modern Frontend**: Beautiful React application with real-time chat interface
-- **☁️ Serverless Architecture**: Fully serverless with AWS Lambda, API Gateway, and S3
-- **📊 Data Pipeline**: Yelp API → DynamoDB → ElasticSearch for fast restaurant search
-- **📧 Email Notifications**: Automated restaurant recommendations via SES
-- **🔄 Queue Processing**: SQS with Dead Letter Queue for reliable message handling
-- **📈 Monitoring**: CloudWatch integration for logging and monitoring
+- **Conversational AI**: Amazon Lex bot with 3 intents (Greeting, Thank You, Dining Suggestions)
+- **Modern Frontend**: Beautiful React application with real-time chat interface
+- **Serverless Architecture**: Fully serverless with AWS Lambda, API Gateway, and S3
+- **Data Pipeline**: Yelp API → DynamoDB → ElasticSearch for fast restaurant search
+- **Email Notifications**: Automated restaurant recommendations via SES
+- **Queue Processing**: SQS with Dead Letter Queue for reliable message handling
+- **Monitoring**: CloudWatch integration for logging and monitoring
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
@@ -45,7 +45,7 @@ This project implements a **Dining Concierge chatbot** that collects user prefer
                        └──────────────────┘
 ```
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 serverless-lex-concierge/
@@ -75,20 +75,20 @@ serverless-lex-concierge/
 └── README.md                 # This file
 ```
 
-## ✅ Assignment Requirements
+## Assignment Requirements
 
 | Requirement | Points | Status | Description |
 |-------------|--------|--------|-------------|
-| **Frontend Deployment** | 10 | ✅ | React app hosted on S3 with modern UI |
-| **API Development** | 15 | ✅ | API Gateway + Lambda with CORS |
-| **Lex Chatbot** | 20 | ✅ | 3 intents with conversation flow |
-| **API Integration** | 10 | ✅ | Lex integration with API Gateway |
-| **Yelp Data Collection** | 15 | ✅ | 1000+ Manhattan restaurants |
-| **ElasticSearch Setup** | 15 | ✅ | Search infrastructure |
-| **Suggestions Module** | 15 | ✅ | Decoupled queue worker |
-| **Extra Credit (DLQ)** | 10 | ✅ | Dead Letter Queue implementation |
+| **Frontend Deployment** | 10 | Complete | React app hosted on S3 with modern UI |
+| **API Development** | 15 | Complete | API Gateway + Lambda with CORS |
+| **Lex Chatbot** | 20 | Complete | 3 intents with conversation flow |
+| **API Integration** | 10 | Complete | Lex integration with API Gateway |
+| **Yelp Data Collection** | 15 | Complete | 1000+ Manhattan restaurants |
+| **ElasticSearch Setup** | 15 | Complete | Search infrastructure |
+| **Suggestions Module** | 15 | Complete | Decoupled queue worker |
+| **Extra Credit (DLQ)** | 10 | Complete | Dead Letter Queue implementation |
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -149,7 +149,7 @@ chmod +x setup.sh
    python other-scripts/deployment/deploy.py
    ```
 
-## 🧪 Testing
+## Testing
 
 ### API Testing
 ```bash
@@ -164,7 +164,7 @@ curl -X POST https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/chat \
 3. Follow bot prompts for restaurant preferences
 4. Check email for recommendations
 
-## 🔧 Components
+## Components
 
 ### Lambda Functions
 - **LF0 (chat-api)**: Handles API requests and integrates with Lex
@@ -182,7 +182,7 @@ curl -X POST https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/chat \
 - **API Gateway**: REST API with CORS support
 - **EventBridge**: Triggers suggestions worker every minute
 
-## 📊 Data Collection
+## Data Collection
 
 The application collects **1000+ Manhattan restaurants** across **15+ cuisine types**:
 
@@ -192,7 +192,7 @@ The application collects **1000+ Manhattan restaurants** across **15+ cuisine ty
 
 Each cuisine type has **200+ restaurants** with complete information including ratings, reviews, addresses, and contact details.
 
-## 🎯 Example Interaction
+## Example Interaction
 
 ```
 User: Hello
@@ -257,44 +257,44 @@ Best regards,
 Your Dining Concierge
 ```
 
-## 🧹 Cleanup
+## Cleanup
 
 To remove all AWS resources:
 ```bash
 python other-scripts/cleanup/cleanup.py
 ```
 
-## 📚 Documentation
+## Documentation
 
 - **[Complete Setup Guide](docs/SETUP_GUIDE.md)** - Detailed setup instructions
 - **[Frontend Documentation](frontend/README.md)** - React app details
 - **[Lambda Functions](lambda-functions/README.md)** - Serverless functions
 - **[Scripts Documentation](other-scripts/README.md)** - Utility scripts
 
-## 🎓 Assignment Details
+## Assignment Details
 
 **Course**: Cloud Computing and Big Data - Fall 2025  
 **Assignment**: Homework Assignment 1  
 **Student**: [Your Name] - [Your NYU NetID]  
 
 ### Submission Checklist
-- ✅ GitHub Repository with complete code
-- ✅ All AWS resources properly configured
-- ✅ Frontend deployed and accessible
-- ✅ Complete data collection (1000+ restaurants)
-- ✅ All Lambda functions working
-- ✅ Email notifications functional
-- ✅ Dead Letter Queue implemented (Extra Credit)
-- ✅ Demo video recorded
-- ✅ GitHub Release created
+- Complete GitHub Repository with complete code
+- All AWS resources properly configured
+- Frontend deployed and accessible
+- Complete data collection (1000+ restaurants)
+- All Lambda functions working
+- Email notifications functional
+- Dead Letter Queue implemented (Extra Credit)
+- Demo video recorded
+- GitHub Release created
 
-## 🤝 Contributing
+## Contributing
 
 This is an academic project. For questions or issues:
 1. Check the troubleshooting section in the setup guide
 2. Review CloudWatch Logs for debugging
 3. Verify all environment variables are set correctly
 
-## 📄 License
+## License
 
 This project is for educational purposes as part of CS-GY 9223 Fall 2025.
