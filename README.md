@@ -115,7 +115,7 @@ chmod +x setup.sh
 
 1. **Clone and Setup Environment**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/kathangabani-nyu/serverless-lex-concierge
    cd serverless-lex-concierge
    cp env.example .env
    # Edit .env with your values
