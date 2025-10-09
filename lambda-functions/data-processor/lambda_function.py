@@ -147,7 +147,7 @@ Your Dining Concierge
     # Send email
     try:
         ses_client.send_email(
-            Source=os.environ['SES_FROM_EMAIL'],
+            Source='kdg7224@nyu.edu',  # Verified SES email address
             Destination={'ToAddresses': [email]},
             Message={
                 'Subject': {'Data': subject},
