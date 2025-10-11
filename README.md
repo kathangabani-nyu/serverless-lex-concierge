@@ -6,6 +6,10 @@ A professional, serverless, microservice-driven web application that provides re
 
 This project implements a **Dining Concierge chatbot** that collects user preferences through natural conversation and provides personalized restaurant suggestions from a curated database of 1000+ Manhattan restaurants. Built for **Cloud Computing and Big Data - Fall 2025** assignment.
 
+## Project Walkthrough Video
+
+https://youtu.be/SSqN3JT79zw
+
 ### Key Features
 
 - **Conversational AI**: Amazon Lex bot with 3 intents (Greeting, Thank You, Dining Suggestions)
