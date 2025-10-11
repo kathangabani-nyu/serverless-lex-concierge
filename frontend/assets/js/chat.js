@@ -1,6 +1,13 @@
 var checkout = {};
+var sessionId = null;
 
 $(document).ready(function() {
+  // Generate or retrieve a unique session ID for this conversation
+  sessionId = localStorage.getItem('chatbot-session-id');
+  if (!sessionId) {
+    sessionId = 'session-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+    localStorage.setItem('chatbot-session-id', sessionId);
+  }
   var $messages = $('.messages-content'),
     d, h, m,
     i = 0;
@@ -28,6 +35,7 @@ $(document).ready(function() {
   function callChatbotApi(message) {
     // params, body, additionalParams
     return sdk.chatbotPost({}, {
+      sessionId: sessionId,
       messages: [{
         type: 'unstructured',
         unstructured: {

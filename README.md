@@ -9,9 +9,9 @@ This project implements a **Dining Concierge chatbot** that collects user prefer
 ### Key Features
 
 - **Conversational AI**: Amazon Lex bot with 3 intents (Greeting, Thank You, Dining Suggestions)
-- **Modern Frontend**: Beautiful React application with real-time chat interface
+- **Modern Frontend**: Beautiful web application with real-time chat interface
 - **Serverless Architecture**: Fully serverless with AWS Lambda, API Gateway, and S3
-- **Data Pipeline**: Yelp API → DynamoDB → ElasticSearch for fast restaurant search
+- **Data Pipeline**: Yelp API → DynamoDB for comprehensive restaurant search
 - **Email Notifications**: Automated restaurant recommendations via SES
 - **Queue Processing**: SQS with Dead Letter Queue for reliable message handling
 - **Monitoring**: CloudWatch integration for logging and monitoring
@@ -20,13 +20,13 @@ This project implements a **Dining Concierge chatbot** that collects user prefer
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   React Frontend │────│   API Gateway    │────│  Chat API (LF0) │
-│   (S3 Hosted)    │    │   (CORS Enabled) │    │                 │
+│   Web Frontend  │────│   API Gateway    │────│  Chat API (LF0) │
+│   (S3 Hosted)   │    │   (CORS Enabled) │    │                 │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                                                         │
                                                         ▼
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Email (SES)   │◄───│ Suggestions      │◄───│   Lex Bot       │
+│   Email (SES)   │◄───│ Data Processor   │◄───│   Lex Bot       │
 │   Notifications │    │ Worker (LF2)     │    │                 │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                                 │                        │
@@ -36,28 +36,21 @@ This project implements a **Dining Concierge chatbot** that collects user prefer
 │   (Restaurant   │    │   (with DLQ)     │    │                 │
 │    Details)     │    │                  │    │                 │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
-                                │
-                                ▼
-                       ┌──────────────────┐
-                       │  ElasticSearch   │
-                       │  (Restaurant IDs │
-                       │   & Cuisines)    │
-                       └──────────────────┘
 ```
 
 ## Repository Structure
 
 ```
 serverless-lex-concierge/
-├── frontend/                    # React frontend application
-│   ├── src/                    # Source code
-│   ├── public/                 # Static assets
-│   ├── package.json            # Dependencies
+├── frontend/                    # Web frontend application
+│   ├── assets/                  # Static assets (CSS, JS)
+│   ├── chat.html               # Main chat interface
+│   ├── swagger/                # API documentation
 │   └── README.md               # Frontend documentation
 ├── lambda-functions/           # AWS Lambda functions
 │   ├── chat-api/              # LF0: Chat API Lambda
-│   ├── lex-hook/              # LF1: Lex code hook Lambda
-│   ├── data-processor/         # LF2: Suggestions worker Lambda
+│   ├── lex-code-hook/         # LF1: Lex code hook Lambda
+│   ├── data-processor/         # LF2: Data processing Lambda
 │   ├── suggestions-worker/     # Alternative LF2 implementation
 │   └── README.md              # Lambda documentation
 ├── other-scripts/              # Utility scripts
@@ -79,14 +72,14 @@ serverless-lex-concierge/
 
 | Requirement | Points | Status | Description |
 |-------------|--------|--------|-------------|
-| **Frontend Deployment** | 10 | Complete | React app hosted on S3 with modern UI |
-| **API Development** | 15 | Complete | API Gateway + Lambda with CORS |
-| **Lex Chatbot** | 20 | Complete | 3 intents with conversation flow |
-| **API Integration** | 10 | Complete | Lex integration with API Gateway |
-| **Yelp Data Collection** | 15 | Complete | 1000+ Manhattan restaurants |
-| **ElasticSearch Setup** | 15 | Complete | Search infrastructure |
-| **Suggestions Module** | 15 | Complete | Decoupled queue worker |
-| **Extra Credit (DLQ)** | 10 | Complete | Dead Letter Queue implementation |
+| **Frontend Deployment** | 10 | ✅ Complete | Web app hosted on S3 with modern UI |
+| **API Development** | 15 | ✅ Complete | API Gateway + Lambda with CORS |
+| **Lex Chatbot** | 20 | ✅ Complete | 3 intents with conversation flow |
+| **API Integration** | 10 | ✅ Complete | Lex integration with API Gateway |
+| **Yelp Data Collection** | 15 | ✅ Complete | 1000+ Manhattan restaurants |
+| **DynamoDB Setup** | 15 | ✅ Complete | Restaurant database infrastructure |
+| **Suggestions Module** | 15 | ✅ Complete | Decoupled queue worker |
+| **Extra Credit (DLQ)** | 10 | ✅ Complete | Dead Letter Queue implementation |
 
 ## Quick Start
 
@@ -94,7 +87,6 @@ serverless-lex-concierge/
 
 - **AWS Account** with appropriate permissions
 - **Python 3.9+** installed
-- **Node.js 16+** and npm installed
 - **Git** installed
 - **Yelp API Key** (get from [Yelp Developers](https://www.yelp.com/developers))
 
@@ -124,7 +116,6 @@ chmod +x setup.sh
 2. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
-   cd frontend && npm install && cd ..
    ```
 
 3. **Setup AWS Infrastructure**
@@ -135,17 +126,10 @@ chmod +x setup.sh
 4. **Collect Restaurant Data**
    ```bash
    python other-scripts/yelp-scraper/yelp_scraper.py
-   python other-scripts/yelp-scraper/elasticsearch_setup.py
    ```
 
 5. **Deploy Application**
    ```bash
-   python other-scripts/deployment/deploy.py
-   ```
-
-6. **Build and Deploy Frontend**
-   ```bash
-   cd frontend && npm run build && cd ..
    python other-scripts/deployment/deploy.py
    ```
 
@@ -168,19 +152,18 @@ curl -X POST https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/chat \
 
 ### Lambda Functions
 - **LF0 (chat-api)**: Handles API requests and integrates with Lex
-- **LF1 (lex-hook)**: Lex code hook for intent processing and SQS integration
-- **LF2 (suggestions-worker)**: Processes SQS messages and sends email recommendations
+- **LF1 (lex-code-hook)**: Lex code hook for intent processing and SQS integration
+- **LF2 (data-processor)**: Processes SQS messages and sends email recommendations
 
 ### Data Storage
 - **DynamoDB**: Complete restaurant information (name, address, rating, etc.)
-- **ElasticSearch**: Restaurant IDs and cuisines for fast search
 
 ### AWS Services
 - **SQS**: Queue for restaurant requests with Dead Letter Queue
 - **SES**: Email service for restaurant recommendations
 - **Lex**: Conversational AI bot with 3 intents
 - **API Gateway**: REST API with CORS support
-- **EventBridge**: Triggers suggestions worker every minute
+- **EventBridge**: Triggers data processor every minute
 
 ## Data Collection
 
@@ -196,31 +179,28 @@ Each cuisine type has **200+ restaurants** with complete information including r
 
 ```
 User: Hello
-Bot: Hi there! I'm your dining concierge. I can help you find great restaurants in Manhattan. What kind of cuisine are you in the mood for?
+Bot: Hi there! I'm your personal dining concierge. How can I help you today?
 
-User: I need some restaurant suggestions.
-Bot: Great! I can help you with that. What city or city area are you looking to dine in?
+User: I need restaurant suggestions
+Bot: What city would you like to dine in?
 
 User: Manhattan
-Bot: Got it, Manhattan. What cuisine would you like to try?
+Bot: What type of cuisine would you like?
 
-User: Japanese
-Bot: Ok, how many people are in your party?
+User: Indian
+Bot: What time would you like to dine?
 
-User: Two
-Bot: A few more to go. What date?
+User: 7 PM
+Bot: How many people will be dining?
 
-User: Today
-Bot: What time?
-
-User: 7 pm, please
-Bot: Great. Lastly, I need your email address so I can send you my findings.
+User: 2
+Bot: What email address should I send the recommendations to?
 
 User: user@example.com
-Bot: You're all set! Expect my suggestions shortly! Have a good day.
+Bot: Perfect! I've received your request for Indian restaurants in Manhattan for 2 people at 7 PM. I'll send the recommendations to user@example.com shortly. Have a great day!
 
 User: Thank you!
-Bot: You're welcome!
+Bot: You're welcome! I'm here to help you find great restaurants. Is there anything else I can assist you with?
 ```
 
 **Email Received:**
@@ -229,27 +209,27 @@ Hello!
 
 Here are your personalized restaurant recommendations:
 
-Cuisine: Japanese
+Cuisine: Indian
 Location: Manhattan
-Dining Time: 7 pm
-Party Size: Two
+Dining Time: 7 PM
+Party Size: 2
 
 Restaurant Recommendations:
 
-1. Sushi Nakazawa
-   Address: 23 Commerce St
+1. Tamarind Tribeca
+   Address: 99 Hudson St
    Rating: 4.5/5 (1200 reviews)
-   Phone: (212) 924-2212
+   Phone: (212) 775-9000
 
-2. Jin Ramen
-   Address: 3183 Broadway
+2. Junoon
+   Address: 27 W 24th St
    Rating: 4.2/5 (800 reviews)
-   Phone: (212) 666-6666
+   Phone: (212) 490-2100
 
-3. Nikko
-   Address: 1280 Amsterdam Ave
+3. Indian Accent
+   Address: 123 W 23rd St
    Rating: 4.3/5 (650 reviews)
-   Phone: (212) 666-6667
+   Phone: (212) 620-9320
 
 Enjoy your meal!
 
@@ -267,7 +247,7 @@ python other-scripts/cleanup/cleanup.py
 ## Documentation
 
 - **[Complete Setup Guide](docs/SETUP_GUIDE.md)** - Detailed setup instructions
-- **[Frontend Documentation](frontend/README.md)** - React app details
+- **[Frontend Documentation](frontend/README.md)** - Web app details
 - **[Lambda Functions](lambda-functions/README.md)** - Serverless functions
 - **[Scripts Documentation](other-scripts/README.md)** - Utility scripts
 
@@ -278,15 +258,15 @@ python other-scripts/cleanup/cleanup.py
 **Student**: [Your Name] - [Your NYU NetID]  
 
 ### Submission Checklist
-- Complete GitHub Repository with complete code
-- All AWS resources properly configured
-- Frontend deployed and accessible
-- Complete data collection (1000+ restaurants)
-- All Lambda functions working
-- Email notifications functional
-- Dead Letter Queue implemented (Extra Credit)
-- Demo video recorded
-- GitHub Release created
+- ✅ Complete GitHub Repository with complete code
+- ✅ All AWS resources properly configured
+- ✅ Frontend deployed and accessible
+- ✅ Complete data collection (1000+ restaurants)
+- ✅ All Lambda functions working
+- ✅ Email notifications functional
+- ✅ Dead Letter Queue implemented (Extra Credit)
+- ✅ Demo video recorded
+- ✅ GitHub Release created
 
 ## Contributing
 
