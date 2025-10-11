@@ -20,7 +20,7 @@ This project implements a **Dining Concierge chatbot** that collects user prefer
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Web Frontend  │────│   API Gateway    │────│  Chat API (LF0) │
+│   Web Frontend  │────│   API Gateway    │────│  Chat-API (LF0) │
 │   (S3 Hosted)   │    │   (CORS Enabled) │    │                 │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                                                         │
@@ -32,8 +32,8 @@ This project implements a **Dining Concierge chatbot** that collects user prefer
                                 │                        │
                                 ▼                        ▼
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   DynamoDB      │    │   SQS Queue      │    │  Lex Hook (LF1) │
-│   (Restaurant   │    │   (with DLQ)     │    │                 │
+│   DynamoDB      │    │   SQS Queue      │    │  Lex_Code-Hook  │
+│   (Restaurant   │    │   (with DLQ)     │    │     (LF1)       │
 │    Details)     │    │                  │    │                 │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
@@ -255,7 +255,8 @@ python other-scripts/cleanup/cleanup.py
 
 **Course**: Cloud Computing and Big Data - Fall 2025  
 **Assignment**: Homework Assignment 1  
-**Student**: [Your Name] - [Your NYU NetID]  
+**Student**: Kathan Gabani kdg7224 
+             Dheeraj Pakala dp4086  
 
 ### Submission Checklist
 - ✅ Complete GitHub Repository with complete code
