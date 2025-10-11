@@ -185,24 +185,23 @@ User: I need restaurant suggestions
 Bot: What city would you like to dine in?
 
 User: San Francisco
-Bot: Great! What kind of cuisine are you in the mood for?
+Bot: What type of cuisine would you like?
 
 User: Italian
-Bot: Sounds delicious! What time would you like to dine?
+Bot: What time would you like to dine?
 
 User: 8:30 PM
 Bot: How many people will be joining you?
 
 User: 4
-Bot: Got it. What email address should I send the restaurant recommendations to?
+Bot: What email address should I send the restaurant recommendations to?
 
 User: dinewithme@example.com
-
-Bot: Perfect! I’ll send you a list of top Italian restaurants in San Francisco for 4 people at 8:30 PM. Check your inbox at dinewithme@example.com
- soon. Enjoy your meal!
+Bot: Perfect! I've received your request for Italian restaurants in San Francisco for 4 people at 8:30 PM. I'll send the recommendations to dinewithme@example.com
+ soon. Have a great day!
 
 User: Thanks!
-Bot: My pleasure! Would you like me to make a reservation for you as well?
+Bot: You're welcome! I'm here to help you find great restaurants. Is there anything else I can assist you with?
 ```
 
 **Email Received:**
