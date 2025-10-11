@@ -178,29 +178,28 @@ Each cuisine type has **200+ restaurants** with complete information including r
 ## Example Interaction
 
 ```
-User: Hello
-Bot: Hi there! I'm your personal dining concierge. How can I help you today?
+User: Hi
+Bot: Hello! I’m your personal dining concierge. Where would you like to eat today?
 
-User: I need restaurant suggestions
-Bot: What city would you like to dine in?
+User: San Francisco
+Bot: Great! What kind of cuisine are you in the mood for?
 
-User: Manhattan
-Bot: What type of cuisine would you like?
+User: Italian
+Bot: Sounds delicious! What time would you like to dine?
 
-User: Indian
-Bot: What time would you like to dine?
+User: 8:30 PM
+Bot: How many people will be joining you?
 
-User: 7 PM
-Bot: How many people will be dining?
+User: 4
+Bot: Got it. What email address should I send the restaurant recommendations to?
 
-User: 2
-Bot: What email address should I send the recommendations to?
+User: dinewithme@example.com
 
-User: user@example.com
-Bot: Perfect! I've received your request for Indian restaurants in Manhattan for 2 people at 7 PM. I'll send the recommendations to user@example.com shortly. Have a great day!
+Bot: Perfect! I’ll send you a list of top Italian restaurants in San Francisco for 4 people at 8:30 PM. Check your inbox at dinewithme@example.com
+ soon. Enjoy your meal!
 
-User: Thank you!
-Bot: You're welcome! I'm here to help you find great restaurants. Is there anything else I can assist you with?
+User: Thanks!
+Bot: My pleasure! Would you like me to make a reservation for you as well?
 ```
 
 **Email Received:**
@@ -209,27 +208,27 @@ Hello!
 
 Here are your personalized restaurant recommendations:
 
-Cuisine: Indian
-Location: Manhattan
-Dining Time: 7 PM
-Party Size: 2
+Cuisine: Italian
+Location: San Francisco
+Dining Time: 8:30 PM
+Party Size: 4
 
 Restaurant Recommendations:
 
-1. Tamarind Tribeca
-   Address: 99 Hudson St
-   Rating: 4.5/5 (1200 reviews)
-   Phone: (212) 775-9000
+Acquerello
+Address: 1722 Sacramento St
+Rating: 4.7/5 (900 reviews)
+Phone: (415) 567-5432
 
-2. Junoon
-   Address: 27 W 24th St
-   Rating: 4.2/5 (800 reviews)
-   Phone: (212) 490-2100
+Flour + Water
+Address: 2401 Harrison St
+Rating: 4.5/5 (1,200 reviews)
+Phone: (415) 826-7000
 
-3. Indian Accent
-   Address: 123 W 23rd St
-   Rating: 4.3/5 (650 reviews)
-   Phone: (212) 620-9320
+A16
+Address: 2355 Chestnut St
+Rating: 4.4/5 (1,000 reviews)
+Phone: (415) 771-2216
 
 Enjoy your meal!
 
