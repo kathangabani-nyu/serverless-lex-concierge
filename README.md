@@ -68,18 +68,6 @@ serverless-lex-concierge/
 └── README.md                 # This file
 ```
 
-## Assignment Requirements
-
-| Requirement | Points | Status | Description |
-|-------------|--------|--------|-------------|
-| **Frontend Deployment** | 10 | ✅ Complete | Web app hosted on S3 with modern UI |
-| **API Development** | 15 | ✅ Complete | API Gateway + Lambda with CORS |
-| **Lex Chatbot** | 20 | ✅ Complete | 3 intents with conversation flow |
-| **API Integration** | 10 | ✅ Complete | Lex integration with API Gateway |
-| **Yelp Data Collection** | 15 | ✅ Complete | 1000+ Manhattan restaurants |
-| **DynamoDB Setup** | 15 | ✅ Complete | Restaurant database infrastructure |
-| **Suggestions Module** | 15 | ✅ Complete | Decoupled queue worker |
-| **Extra Credit (DLQ)** | 10 | ✅ Complete | Dead Letter Queue implementation |
 
 ## Quick Start
 
@@ -260,15 +248,15 @@ python other-scripts/cleanup/cleanup.py
              Dheeraj Pakala dp4086  
 
 ### Submission Checklist
-- ✅ Complete GitHub Repository with complete code
-- ✅ All AWS resources properly configured
-- ✅ Frontend deployed and accessible
-- ✅ Complete data collection (1000+ restaurants)
-- ✅ All Lambda functions working
-- ✅ Email notifications functional
-- ✅ Dead Letter Queue implemented (Extra Credit)
-- ✅ Demo video recorded
-- ✅ GitHub Release created
+- Complete GitHub Repository with complete code
+- All AWS resources properly configured
+- Frontend deployed and accessible
+- Complete data collection (1000+ restaurants)
+- All Lambda functions working
+- Email notifications functional
+- Dead Letter Queue implemented (Extra Credit)
+- Demo video recorded
+- GitHub Release created
 
 ## Contributing
 
