@@ -181,6 +181,9 @@ Each cuisine type has **200+ restaurants** with complete information including r
 User: Hi
 Bot: Hello! I’m your personal dining concierge. Where would you like to eat today?
 
+User: I need restaurant suggestions
+Bot: What city would you like to dine in?
+
 User: San Francisco
 Bot: Great! What kind of cuisine are you in the mood for?
 
